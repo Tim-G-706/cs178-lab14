@@ -75,7 +75,7 @@ def viewdb():
 
 # TODO: Section 2 — add your /artistquery/<artist_id> route here
 @app.route("/artistquery/<artist_id>")
-def viewdb():
+def artistquery(artist_id):
     """
     Fetches tracks from the Chinook database
     where artist id is equal to artist_id
@@ -87,8 +87,8 @@ def viewdb():
         FROM Artist
         JOIN Album USING (ArtistID)
         JOIN Track USING (AlbumID)
-        where ArtistId = artist_id
-    """)
+        where ArtistId = %s
+    """, (artist_id,))
     return display_html(rows)
 
 # TODO: Section 3 — add your /pricequerytextbox GET and POST routes here
